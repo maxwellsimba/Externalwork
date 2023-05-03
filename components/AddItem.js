@@ -26,6 +26,7 @@ const AddItem = ({addItem}) => {
           addItem(text);
           setText('');
         }}>
+          
         <Text style={styles.btnText}>
           <Icon name="plus" size={20} /> Add Item
         </Text>

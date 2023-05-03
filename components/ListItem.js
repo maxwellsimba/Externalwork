@@ -8,72 +8,34 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const ListItem = ({
-  item,
-  deleteItem,
-  editItem,
-  isEditing,
-  editItemDetail,
-  saveEditItem,
-  handleEditChange,
-  itemChecked,
-  checkedItems,
-}) => {
-  const checked = checkedItems.filter(
-    checkedItem => checkedItem.id === item.id,
-  );
+const ListItem = ({item, deleteItem}) => {
+  
   return (
-    <TouchableOpacity style={styles.listItem}>
+
+    <TouchableOpacity  style={styles.listItem}>
       <View style={styles.listItemView}>
-        {isEditing && editItemDetail.id === item.id ? (
-          <TextInput
-            placeholder="Edit Item..."
-            style={styles.editItemInput}
-            onChangeText={handleEditChange}
-          />
-        ) : (
-          <Text
-            onPress={() => itemChecked(item.id, item.text)}
-            style={
-              checked.length ? styles.checkedItemText : styles.listItemText
-            }>
-            {item.text}
-          </Text>
-        )}
-        <View style={styles.iconView}>
-          {isEditing && editItemDetail.id === item.id ? (
-            <Icon
-              name="save"
-              size={20}
-              color="green"
-              onPress={() => saveEditItem(item.id, item.text)}
-            />
-          ) : (
-            !checked.length && (
-              <Icon
-                name="pencil"
-                size={20}
-                color="blue"
-                onPress={() => editItem(item.id, item.text)}
-              />
-            )
-          )}
-          <Icon
-            name="remove"
-            size={20}
-            color="firebrick"
-            onPress={() => deleteItem(item.id)}
-          />
-        </View>
+        <Text style={styles.listItemText}>{item.text}</Text>
+        <Icon
+          name="remove" 
+          size={20} 
+          color="firebrick"
+          onPress={() => deleteItem(item.id)} 
+          
+        />
       </View>
+      
     </TouchableOpacity>
+   
+
   );
+  
+  
 };
 
 const styles = StyleSheet.create({
   listItem: {
     padding: 15,
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#f6f6f6',
     borderBottomWidth: 1,
     borderColor: '#eee',
   },
@@ -83,10 +45,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   listItemText: {
-    fontSize: 18,
+    fontSize: 20,
   },
   checkedItemText: {
-    fontSize: 18,
+    fontSize: 20,
     textDecorationLine: 'line-through',
     color: 'green',
   },
@@ -97,7 +59,7 @@ const styles = StyleSheet.create({
   },
   editItemInput: {
     padding: 0,
-    fontSize: 18,
+    fontSize: 20,
   },
 });
 
